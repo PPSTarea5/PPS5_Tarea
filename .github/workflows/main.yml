@@ -1,0 +1,14 @@
+name: gitleaks
+on:
+  push:
+    branches:
+      - '**' #cualquier rama del repositorio
+jobs:
+  scan:
+    name: gitleaks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4 #clona el repositorio en el runner para poder analizar el código
+        with:
+          fetch-depth: 0 # revisa todo el historial de commits
+      - uses: gitleaks/gitleaks-action@v2 # ejecuta gitleaks utilizando la acción oficial
